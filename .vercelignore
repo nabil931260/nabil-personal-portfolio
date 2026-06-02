@@ -1,0 +1,14 @@
+node_modules/
+dist/
+test-results/
+.repo-inspect/
+playwright-report/
+coverage/
+*.tsbuildinfo
+*.log
+qa-*.png
+.env
+.env.*
+.env.local
+.env.production
+.env.development
