@@ -3,9 +3,9 @@ const nowPlayingEndpoint = "https://api.spotify.com/v1/me/player/currently-playi
 const recentlyPlayedEndpoint = "https://api.spotify.com/v1/me/player/recently-played?limit=1";
 
 function getCredentials() {
-  const clientId = process.env.SPOTIFY_CLIENT_ID;
-  const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
-  const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
+  const clientId = process.env.SPOTIFY_CLIENT_ID?.trim();
+  const clientSecret = process.env.SPOTIFY_CLIENT_SECRET?.trim();
+  const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN?.trim();
 
   if (!clientId || !clientSecret || !refreshToken) return null;
   return { clientId, clientSecret, refreshToken };

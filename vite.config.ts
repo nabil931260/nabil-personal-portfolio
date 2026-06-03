@@ -51,16 +51,38 @@ function normalizeTrack(item: SpotifyItem | undefined, isPlaying: boolean, progr
   };
 }
 
-function spotifyDevApi(mode: string): Plugin {
+const spotifyEnvKeys = ["SPOTIFY_CLIENT_ID", "SPOTIFY_CLIENT_SECRET", "SPOTIFY_REFRESH_TOKEN"] as const;
+
+function loadProjectSpotifyEnv(mode: string) {
+  const inherited = spotifyEnvKeys.reduce<Record<string, string | undefined>>((values, key) => {
+    values[key] = process.env[key];
+    delete process.env[key];
+    return values;
+  }, {});
+
   const env = loadEnv(mode, process.cwd(), "SPOTIFY_");
+
+  for (const key of spotifyEnvKeys) {
+    if (inherited[key] !== undefined) process.env[key] = inherited[key];
+  }
+
+  return env;
+}
+
+function getSpotifyEnv(env: Record<string, string | undefined>, key: string) {
+  return (env[key] || env[`\uFEFF${key}`] || process.env[key] || "").trim();
+}
+
+function spotifyDevApi(mode: string): Plugin {
+  const env = loadProjectSpotifyEnv(mode);
 
   return {
     name: "spotify-dev-api",
     configureServer(server) {
       server.middlewares.use("/api/spotify-now-playing", async (_req, res) => {
-        const clientId = env.SPOTIFY_CLIENT_ID || process.env.SPOTIFY_CLIENT_ID;
-        const clientSecret = env.SPOTIFY_CLIENT_SECRET || process.env.SPOTIFY_CLIENT_SECRET;
-        const refreshToken = env.SPOTIFY_REFRESH_TOKEN || process.env.SPOTIFY_REFRESH_TOKEN;
+        const clientId = getSpotifyEnv(env, "SPOTIFY_CLIENT_ID");
+        const clientSecret = getSpotifyEnv(env, "SPOTIFY_CLIENT_SECRET");
+        const refreshToken = getSpotifyEnv(env, "SPOTIFY_REFRESH_TOKEN");
 
         if (!clientId || !clientSecret || !refreshToken) {
           sendJson(res, 200, { isConfigured: false, isPlaying: false });
@@ -101,7 +123,8 @@ function spotifyDevApi(mode: string): Plugin {
 
           const data = await nowPlayingResponse.json();
           sendJson(res, 200, normalizeTrack(data.item, data.is_playing, data.progress_ms));
-        } catch {
+        } catch (error) {
+          console.error("[spotify-dev-api]", error instanceof Error ? error.message : error);
           sendJson(res, 500, {
             isConfigured: true,
             isPlaying: false,
