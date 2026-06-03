@@ -10,12 +10,6 @@ This portfolio is prepared for Vercel because the project uses a Vite static bui
 - Output directory: `dist`
 - Root directory: this project folder
 
-If deploying from the full Obsidian vault repository, set the Vercel root directory to:
-
-```text
-Central/03 Projects/Personal Portfolio Site
-```
-
 ## Environment Variables
 
 Set these in Vercel Project Settings, not in the repo:
@@ -42,7 +36,7 @@ Then verify:
 - Project links open the intended public repositories.
 - Recruiter Snapshot, Resume, project drawers, terminal, and command palette still work after deployment.
 - `.env.local` is not committed.
-- No copied inspection folders, screenshots, logs, or local `.env` files are included in the deploy upload.
+- Logs, screenshots, local environment files, and build output are not committed.
 
 ## Post-Deploy Check
 
