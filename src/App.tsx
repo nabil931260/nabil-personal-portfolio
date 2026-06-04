@@ -1,3 +1,4 @@
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { QuickNav } from "./components/QuickNav";
 import { ProjectTerminal } from "./components/ProjectTerminal";
 import { RecruiterMode } from "./components/RecruiterMode";
@@ -45,6 +46,7 @@ export function App() {
 
   return (
     <main>
+      <SpeedInsights />
       <QuickNav />
       <ProjectTerminal />
       <ResumeView />
