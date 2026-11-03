@@ -13,6 +13,7 @@ type GraphNode = {
 };
 
 const projectNodes: GraphNode[] = [
+  { id: "assetforge", label: "AssetForge", kind: "project", color: "#73f0c2", position: [-0.25, 0.3, 2.4] },
   { id: "expressifai", label: "ExpressifAI", kind: "project", color: "#62d9ef", position: [-2.9, 1.35, 1.05] },
   { id: "easyteller", label: "EasyTeller", kind: "project", color: "#f2c770", position: [2.75, 1.15, -1.15] },
   { id: "appetite", label: "Appetite Beta", kind: "project", color: "#73f0c2", position: [-2.65, -1.2, -1.35] },
@@ -22,6 +23,7 @@ const projectNodes: GraphNode[] = [
 ];
 
 const skillNodes: GraphNode[] = [
+  { id: "react", label: "React", kind: "tool", color: "#62d9ef", position: [0.2, 0.9, -2.1] },
   { id: "python", label: "Python", kind: "language", color: "#73f0c2", position: [-0.45, 0.18, 0.72] },
   { id: "typescript", label: "TypeScript", kind: "language", color: "#62d9ef", position: [0.82, 0.78, -0.55] },
   { id: "sql", label: "SQL", kind: "language", color: "#73f0c2", position: [-1.05, -0.68, -0.92] },
@@ -31,13 +33,16 @@ const skillNodes: GraphNode[] = [
   { id: "firebase", label: "Firebase", kind: "tool", color: "#f2c770", position: [2.18, 0.18, -1.35] },
   { id: "sqlite", label: "SQLite", kind: "tool", color: "#73f0c2", position: [-1.58, -1.22, -0.45] },
   { id: "ml", label: "ML models", kind: "tool", color: "#eb7089", position: [0.55, -1.18, 0.35] },
-  { id: "maps", label: "Maps / events", kind: "tool", color: "#eb7089", position: [1.12, 1.62, -1.05] },
+  { id: "maps", label: "Events", kind: "tool", color: "#eb7089", position: [1.12, 1.62, -1.05] },
   { id: "automation", label: "Automation", kind: "tool", color: "#73f0c2", position: [1.68, -1.62, 0.55] },
 ];
 
 const graphNodes = [...projectNodes, ...skillNodes];
 
 const graphEdges: Array<[string, string]> = [
+  ["assetforge", "react"],
+  ["assetforge", "typescript"],
+  ["assetforge", "htmlcss"],
   ["expressifai", "python"],
   ["expressifai", "opencv"],
   ["expressifai", "ml"],
@@ -60,6 +65,7 @@ const graphEdges: Array<[string, string]> = [
 ];
 
 const projectIdMap: Record<string, string> = {
+  assetforge: "assetforge",
   appetite: "appetite-chat",
   easyteller: "easyteller",
   expressifai: "expressifai",
@@ -76,7 +82,7 @@ const skillGraphIdMap: Record<string, string[]> = {
   Python: ["python"],
   SQL: ["sql", "sqlite"],
   "HTML/CSS": ["htmlcss"],
-  React: ["typescript", "htmlcss"],
+  React: ["react"],
   SvelteKit: ["svelte"],
   Firebase: ["firebase"],
   MongoDB: ["automation"],

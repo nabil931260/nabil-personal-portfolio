@@ -45,14 +45,72 @@ export type DemoFrame = {
 
 export const profile = {
   name: "Nabil Fadili",
-  headline: "CS student building full-stack, AI, and operations tools.",
+  headline: "Software development, testing, and applied AI.",
+  mobileHeadline: "Software, testing, and AI.",
   subtitle:
-    "Computer Science student at UT Dallas with experience across full-stack development, machine learning, computer vision, operations tooling, and fintech projects.",
+    "I build practical web and Python tools and work on software engineering evaluation at Handshake AI. My projects span asset validation, OCR workflows, and computer vision.",
   location: "Dallas-Fort Worth, Texas",
-  education: "B.S. Computer Science, University of Texas at Dallas, expected Dec. 2026",
+  education: "B.S. Computer Science, University of Texas at Dallas, expected Spring 2027",
+  aboutHeading: "Practical software, tested and explained.",
+  aboutIntro:
+    "I build web tools and Python workflows with an emphasis on correctness, testing, and clear documentation. At Handshake AI, my work includes software engineering task design and reviewing model-generated solutions against requirements and test evidence.",
+  aboutWork:
+    "My projects include AssetForge's React/TypeScript asset review workflow and EasyTeller's team-built OCR application prototype. During my 2023 Amazon internship, I developed a virtual drop-zone management web application; I returned for a second internship in 2024.",
 };
 
 export const projects: Project[] = [
+  {
+    id: "assetforge",
+    title: "AssetForge",
+    short: "Browser-based asset-folder validation and Godot-compatible manifest export.",
+    problem:
+      "Messy asset folders make naming conflicts, unsupported formats, and import organization harder to review before moving files into a game project.",
+    built:
+      "Built a React/TypeScript browser tool with file and folder import, normalized duplicate-name checks, reviewed warnings, Godot-style resource paths, and JSON manifest and import-note export.",
+    tools: ["React", "TypeScript", "Vite", "Vitest", "React Testing Library"],
+    outcome:
+      "Published a GitHub Pages beta with domain tests and a React Testing Library UI test.",
+    status: "Public beta",
+    link: "https://github.com/nabil931260/assetforge",
+    accent: "mint",
+    icon: Code2,
+    demoFrames: [
+      {
+        eyebrow: "Workflow summary",
+        title: "Asset Review",
+        description: "Summary of the public beta's asset import, validation, and export workflow.",
+        metrics: [
+          { label: "Interface", value: "React + TS" },
+          { label: "Export", value: "JSON + notes" },
+        ],
+        rows: [
+          { label: "Import", value: "Files and folders" },
+          { label: "Review", value: "Naming, formats, duplicates" },
+          { label: "Output", value: "Godot-style resource paths", tone: "good" },
+        ],
+      },
+    ],
+    caseStudy: {
+      architecture: [
+        { label: "Import", detail: "Browser files and folders provide asset metadata and relative paths" },
+        { label: "Validate", detail: "Rules identify unsupported formats, naming issues, and normalized duplicates" },
+        { label: "Review", detail: "Categories, tags, and reviewed warnings keep decisions visible" },
+        { label: "Export", detail: "JSON manifest and import notes describe exportable assets" },
+      ],
+      tradeoffs: [
+        "Kept asset review in the browser so the beta works without accounts or a backend.",
+        "Separated export-blocking errors from warnings that can be reviewed without changing original files.",
+      ],
+      validation: [
+        "Added Vitest domain tests and a React Testing Library UI test.",
+        "The public demo provides sample assets for inspecting the review and export workflow.",
+      ],
+      next: [
+        "Expand per-format metadata and import guidance.",
+        "Improve validation feedback using additional real asset-folder examples.",
+      ],
+    },
+  },
   {
     id: "lead-scanner",
     title: "Lead Research Automation Tool",
@@ -64,7 +122,7 @@ export const projects: Project[] = [
     tools: ["Python", "Requests", "BeautifulSoup", "Markdown"],
     outcome:
       "Created a repeatable research process with tests, evidence columns, and manual review gates before any outreach.",
-    status: "Working local prototype",
+    status: "Local prototype",
     link: "https://github.com/nabil931260/ai-lead-scanner",
     accent: "mint",
     icon: FileSearch,
@@ -74,8 +132,8 @@ export const projects: Project[] = [
         title: "Scored Leads",
         description: "Based on the repo's example output from `scripts/analyze_leads.py`.",
         metrics: [
-          { label: "Top score", value: "75" },
-          { label: "Confidence", value: "Medium" },
+          { label: "Scoring", value: "Rule-based" },
+          { label: "Evidence", value: "Visible signals" },
         ],
         rows: [
           { label: "Signal", value: "Thin homepage content", tone: "good" },
@@ -107,7 +165,7 @@ export const projects: Project[] = [
       ],
       tradeoffs: [
         "Kept the workflow local-first so it stays easy to audit and avoids storing sensitive lead data.",
-        "Used deterministic review columns instead of fully automated scoring so weak evidence is easy to catch.",
+        "Used rule-based scoring and visible evidence columns so prioritization is easy to inspect.",
       ],
       validation: [
         "Tested scanner behavior and kept evidence visible in the review queue.",
@@ -122,15 +180,15 @@ export const projects: Project[] = [
   {
     id: "appetite-chat",
     title: "Appetite Knowledge Base Beta",
-    short: "Private working beta for searchable underwriting appetite notes and cited answers.",
+    short: "Private prototype for searchable underwriting appetite notes and cited answers.",
     problem:
       "Specialized eligibility notes are hard to trust when they are buried across long threads, profiles, and one-off answers.",
     built:
       "Built a local SQLite web beta with question threads, searchable source notes, CSV import, review labels, and cited answer generation.",
     tools: ["Python", "SQLite", "Full-text search", "HTML/CSS"],
     outcome:
-      "Delivered a working private beta with 10 passing unit and web smoke tests.",
-    status: "Working private beta",
+      "Built a private prototype for importing, searching, and reusing reviewed notes with source citations.",
+    status: "Private prototype",
     accent: "cyan",
     icon: Network,
     demoFrames: [
@@ -139,8 +197,8 @@ export const projects: Project[] = [
         title: "Appetite Search",
         description: "Mirrors the beta search form, source filters, and cited-answer workflow without exposing private data.",
         metrics: [
-          { label: "Tests", value: "10" },
-          { label: "Mode", value: "Private beta" },
+          { label: "Review", value: "Source citations" },
+          { label: "Mode", value: "Private prototype" },
         ],
         rows: [
           { label: "Query", value: "Eligibility question + source filters" },
@@ -154,7 +212,7 @@ export const projects: Project[] = [
         description: "The beta prioritizes reviewed notes and keeps informal context clearly labeled.",
         metrics: [
           { label: "Storage", value: "SQLite" },
-          { label: "Tests", value: "10" },
+          { label: "Review", value: "Source citations" },
         ],
         rows: [
           { label: "Basis", value: "Reviewed notes", tone: "good" },
@@ -175,8 +233,8 @@ export const projects: Project[] = [
         "Focused on cited answers instead of a black-box chatbot so users can verify where each answer came from.",
       ],
       validation: [
-        "Delivered the beta with 10 passing unit and web smoke tests.",
-        "Tested the core loop from question capture to searchable answer reuse.",
+        "The review workflow keeps cited source notes available alongside answer drafts.",
+        "Public summaries use illustrative workflow data; source material remains private.",
       ],
       next: [
         "Add role-based review states for draft, verified, and stale answers.",
@@ -187,15 +245,15 @@ export const projects: Project[] = [
   {
     id: "easyteller",
     title: "EasyTeller",
-    short: "OCR-based credit application support for unbanked users.",
+    short: "Team credit-application prototype with document upload and OCR workflows.",
     problem:
       "Credit and loan applications are harder to evaluate when applicants have limited conventional credit history but useful alternative financial documents.",
     built:
-      "Built a Svelte/FastAPI application that accepts supporting documents, extracts text with OCR, and uses an AI-assisted review flow for document validation.",
-    tools: ["OpenCV", "Tesseract", "SambaNova Cloud API", "Svelte", "Python"],
+      "Contributed to a team credit-application prototype with a SvelteKit frontend, Python/FastAPI backend, MongoDB storage, OpenCV/Tesseract extraction, and SambaNova model calls.",
+    tools: ["SvelteKit", "TypeScript", "FastAPI", "MongoDB", "Python", "OpenCV", "Tesseract", "SambaNova Cloud API"],
     outcome:
-      "Processed 25+ test applications with 80% OCR accuracy and reduced manual verification time by 40% in testing.",
-    status: "Hackathon/project build",
+      "Built with a hackathon team to connect document upload, OCR extraction, model-assisted workflows, and application-data storage.",
+    status: "Team hackathon prototype",
     link: "https://github.com/ThejasKumar100/hackutd11",
     accent: "amber",
     icon: ShieldCheck,
@@ -219,8 +277,8 @@ export const projects: Project[] = [
         title: "OCR Review Flow",
         description: "Repo backend uses OpenCV and Tesseract to extract text from uploaded application documents.",
         metrics: [
-          { label: "OCR", value: "80%" },
-          { label: "Apps tested", value: "25+" },
+          { label: "OCR", value: "Tesseract" },
+          { label: "Storage", value: "MongoDB" },
         ],
         rows: [
           { label: "Sample files", value: "Utility bill, rent receipt" },
@@ -234,15 +292,15 @@ export const projects: Project[] = [
         { label: "Applicant input", detail: "Credit application and supporting documents" },
         { label: "OCR", detail: "OpenCV and Tesseract extract document text" },
         { label: "AI review", detail: "External AI API assists with verification workflow" },
-        { label: "Decision support", detail: "Outputs support faster manual review" },
+        { label: "Application data", detail: "MongoDB stores application data for the prototype workflow" },
       ],
       tradeoffs: [
         "Used OCR and AI as decision support rather than replacing human verification.",
         "Prioritized a working hackathon flow over long-term production integrations.",
       ],
       validation: [
-        "Processed 25+ test applications in the project test set.",
-        "Measured 80% OCR accuracy and a 40% reduction in manual verification time during testing.",
+        "Public source includes SvelteKit upload routes and FastAPI document-processing handlers.",
+        "Document extraction uses OpenCV/Tesseract alongside SambaNova model calls.",
       ],
       next: [
         "Improve document quality checks before OCR.",
@@ -253,15 +311,15 @@ export const projects: Project[] = [
   {
     id: "expressifai",
     title: "ExpressifAI",
-    short: "Real-time computer vision for assistive communication.",
+    short: "Webcam-based computer vision prototype for assistive communication.",
     problem:
       "Assistive communication tools need to be responsive enough to translate expression and head-movement signals into usable intent.",
     built:
       "Built a Python/OpenCV prototype that processes live webcam input with PyTorch and torchvision models, then fuses expression and action predictions into output text.",
-    tools: ["Python", "OpenCV", "PyTorch", "torchvision", "Computer vision"],
+    tools: ["Python", "PyTorch", "CLIP", "OpenCV", "torchvision"],
     outcome:
-      "Reached 85% controlled-test accuracy, under 200ms latency, and supported testing with 15+ users.",
-    status: "Portfolio project",
+      "Combined webcam input, CLIP action-label matching, and torchvision inference into prototype text output.",
+    status: "Computer vision prototype",
     link: "https://github.com/nabil931260/ExpressifAI3",
     accent: "cyan",
     icon: Bot,
@@ -271,13 +329,13 @@ export const projects: Project[] = [
         title: "Expression Signal Panel",
         description: "Based on the repo's webcam loader, emotion model, action model, and fusion pipeline.",
         metrics: [
-          { label: "Latency", value: "<200ms" },
-          { label: "Accuracy", value: "85%" },
+          { label: "Input", value: "Webcam" },
+          { label: "Models", value: "PyTorch + CLIP" },
         ],
         rows: [
           { label: "Frame source", value: "Webcam stream" },
-          { label: "Emotion model", value: "Facial expression signal" },
-          { label: "Action model", value: "Head/action intent" },
+          { label: "Expression branch", value: "torchvision inference" },
+          { label: "Action model", value: "CLIP label matching" },
         ],
       },
       {
@@ -285,8 +343,8 @@ export const projects: Project[] = [
         title: "Expression To Message",
         description: "The project combines facial expression and action signals into a communication output.",
         metrics: [
-          { label: "Latency", value: "<200ms" },
-          { label: "Users", value: "15+" },
+          { label: "Input", value: "Webcam" },
+          { label: "Output", value: "Prototype text" },
         ],
         rows: [
           { label: "Input", value: "Face + head movement" },
@@ -299,16 +357,16 @@ export const projects: Project[] = [
       architecture: [
         { label: "Camera stream", detail: "Live webcam input provides face and head movement frames" },
         { label: "OpenCV", detail: "Frame processing extracts visual signals in real time" },
-        { label: "Vision model", detail: "PyTorch and torchvision classify expression and action signals" },
+        { label: "Model inference", detail: "torchvision expression branch and CLIP action-label matching" },
         { label: "Assistive output", detail: "Classified expressions map to communication actions" },
       ],
       tradeoffs: [
-        "Optimized for low-friction interaction rather than complex calibration.",
-        "Kept latency visible as a core quality metric because responsiveness matters for assistive use.",
+        "Used OpenCV capture with separate expression and action inference before combining predictions.",
+        "Kept the pipeline as an inspectable prototype for exploring assistive communication.",
       ],
       validation: [
-        "Reached 85% controlled-test accuracy and under 200ms latency.",
-        "Tested with 15+ users during project validation.",
+        "Public source contains webcam capture, model inference, and prediction-to-text logic.",
+        "Expression predictions remain prototype outputs requiring a trained checkpoint and evaluation before practical use.",
       ],
       next: [
         "Add calibration profiles for different users and lighting conditions.",
@@ -319,13 +377,13 @@ export const projects: Project[] = [
   {
     id: "kickmap",
     title: "KickMap",
-    short: "Svelte/Firebase campus event discovery and digital billboard concept.",
+    short: "Campus event creation, filtered search, and sign-in with SvelteKit and Firebase.",
     problem:
       "Campus events are scattered across flyers, chats, and club pages, so students need a clearer way to discover what is happening nearby.",
     built:
-      "Built a Svelte/Firebase event discovery concept with event browsing, organizer posting, map/list context, and RSVP-oriented workflows.",
-    tools: ["TypeScript", "SvelteKit", "Firebase", "HTML/CSS", "Maps", "Product design"],
-    outcome: "Public TypeScript repository available on GitHub.",
+      "Developed a SvelteKit/TypeScript campus event prototype with event creation, filtered event search, Firestore storage, and Firebase email/password authentication.",
+    tools: ["SvelteKit", "TypeScript", "Firebase", "Firestore", "Firebase Authentication"],
+    outcome: "Implemented event creation, filtered search, and authentication in the public event prototype.",
     status: "Public project",
     link: "https://github.com/nabil931260/KickMap",
     accent: "rose",
@@ -333,16 +391,16 @@ export const projects: Project[] = [
     demoFrames: [
       {
         eyebrow: "Campus discovery",
-        title: "Event Map + Feed",
-        description: "Based on the public Svelte/Firebase event discovery repository and event organizer concept.",
+        title: "Campus Event Workflow",
+        description: "Summary of the implemented SvelteKit/Firebase event creation, search, and sign-in flow.",
         metrics: [
           { label: "Stack", value: "SvelteKit" },
           { label: "Data", value: "Firebase" },
         ],
         rows: [
           { label: "Main feed", value: "Campus events" },
-          { label: "Context", value: "Map/list discovery" },
-          { label: "Action", value: "RSVP-oriented flow" },
+          { label: "Search", value: "Filtered Firestore reads" },
+          { label: "Sign-in", value: "Firebase Authentication" },
         ],
       },
     ],
@@ -350,13 +408,13 @@ export const projects: Project[] = [
   {
     id: "sugarsense",
     title: "SugarSense",
-    short: "Diabetes prediction/classification notebook project.",
+    short: "Educational classification prototype with a Gradio interface.",
     problem:
       "Risk-screening projects need careful framing: model output should support review, not present itself as a diagnosis.",
     built:
-      "Built a notebook-based classification project that explores diabetes risk signals, compares model behavior, and presents the output as decision support.",
-    tools: ["Python", "scikit-learn", "Pandas", "ML models"],
-    outcome: "Public notebook repository available on GitHub.",
+      "Built an educational notebook project using 768 records with eight input features, compared classification models, and created a Gradio interface to explore predictions.",
+    tools: ["Python", "Pandas", "scikit-learn", "Gradio"],
+    outcome: "Published educational notebooks and a Gradio prediction interface for exploring model behavior.",
     status: "Public notebook project",
     link: "https://github.com/nabil931260/Diabetes-Prediction-AIM-SP24-main",
     accent: "cyan",
@@ -367,13 +425,13 @@ export const projects: Project[] = [
         title: "Model Comparison",
         description: "Based on the public diabetes prediction notebooks and classification workflow.",
         metrics: [
-          { label: "Format", value: "Jupyter" },
-          { label: "Task", value: "Classification" },
+          { label: "Records", value: "768" },
+          { label: "Inputs", value: "8 predictors" },
         ],
         rows: [
-          { label: "Features", value: "Clinical risk signals" },
+          { label: "Interface", value: "Gradio" },
           { label: "Modeling", value: "scikit-learn" },
-          { label: "Output", value: "Risk prediction" },
+          { label: "Purpose", value: "Educational exploration" },
         ],
       },
     ],
@@ -384,74 +442,89 @@ export const skills = [
   {
     label: "Languages",
     icon: Code2,
-    items: ["TypeScript", "JavaScript", "Python", "Java", "C/C++", "SQL", "HTML/CSS", "MIPS"],
+    items: ["TypeScript", "JavaScript", "Python", "Java", "C/C++", "SQL", "HTML/CSS"],
   },
   {
     label: "Web / Dev Tools",
     icon: TerminalSquare,
-    items: ["React", "SvelteKit", "Firebase", "MongoDB", "Git", "UNIX", "REST APIs", "SQLite"],
+    items: ["React", "SvelteKit", "Firebase", "MongoDB", "Vitest", "React Testing Library", "Git", "UNIX", "REST APIs", "SQLite"],
   },
   {
     label: "AI / Automation",
     icon: Bot,
-    items: ["OpenCV", "Tesseract", "PyTorch", "SambaNova Cloud API", "OCR pipelines"],
+    items: ["OpenCV", "Tesseract", "PyTorch", "CLIP", "SambaNova Cloud API", "OCR pipelines"],
   },
   {
-    label: "Data / Finance / Ops",
+    label: "Data / Quality",
     icon: LineChart,
-    items: ["Pandas", "NumPy", "scikit-learn", "PyTorch", "TensorFlow", "Matplotlib", "OCR workflows", "Requirements gathering"],
+    items: ["Pandas", "NumPy", "scikit-learn", "Matplotlib", "Gradio", "Code review", "Software testing", "Requirements gathering"],
   },
 ];
 
 export const experiences = [
   {
-    role: "Area Manager Intern",
-    org: "Amazon",
-    dates: "Jun. 2023 - Aug. 2023; Jun. 2024 - Aug. 2024",
+    role: "AI Trainer & Model Evaluator",
+    org: "Handshake AI",
+    dates: "May 2026 - Present",
     details:
-      "Completed two Area Manager internships focused on operations execution, cross-functional communication, process improvement, and technical problem-solving in a high-throughput environment.",
-    proof: "Applied operations, communication, and process-improvement experience in a fast-paced fulfillment environment.",
+      "Work on software engineering task design, reference implementations and test cases, and review model-generated code, validation results, and documentation against task requirements.",
+    proof: "Document findings with code and test evidence and write clear technical feedback.",
   },
   {
-    role: "Computer Science Student",
-    org: "University of Texas at Dallas",
-    dates: "Expected Dec. 2026",
+    role: "Area Manager Intern",
+    org: "Amazon",
+    dates: "Jun. 2023 - Aug. 2023",
     details:
-      "Focused on full-stack software, AI/ML projects, workflow automation, and tools that connect technical systems to practical users.",
-    proof: "Project work spans computer vision, fintech OCR, campus tools, ML classification, and operations tooling.",
+      "Led development of a virtual drop-zone management web application, gathering operations-team requirements and iterating through design, implementation, testing, deployment, and user feedback.",
+    proof: "Tested the application with 50+ warehouse associates concurrently during the 2023 project.",
+  },
+  {
+    role: "Area Manager Intern",
+    org: "Amazon",
+    dates: "Jun. 2024 - Aug. 2024",
+    details: "Returned to Amazon for a second Area Manager internship at its Fort Worth site.",
+    proof: "Second internship rotation following the 2023 Jeffersonville internship.",
+  },
+  {
+    role: "Computer Science - degree in progress",
+    org: "University of Texas at Dallas",
+    dates: "Expected Spring 2027",
+    details:
+      "B.S. Computer Science in progress, with project work in web development, computer vision, OCR workflows, and educational machine learning.",
+    proof: "Expected graduation: Spring 2027.",
   },
 ];
 
 export const toolStack = {
   languages: "TypeScript, JavaScript, Python, Java, C/C++, SQL",
-  web: "React, SvelteKit, Firebase, SQLite, REST APIs",
-  ai: "OpenCV, Tesseract, PyTorch, SambaNova Cloud API",
-  data: "Pandas, NumPy, scikit-learn, PyTorch, TensorFlow, Matplotlib",
+  web: "React, SvelteKit, Firebase, MongoDB, Vitest, React Testing Library",
+  ai: "OpenCV, Tesseract, PyTorch, CLIP, SambaNova Cloud API",
+  data: "Pandas, NumPy, scikit-learn, Gradio, code review, testing",
 };
 
 export const contact = {
   email: "nabil.x.fadili@gmail.com",
   github: "https://github.com/nabil931260",
   linkedin: "https://linkedin.com/in/nabil-fadili9484",
-  resume: "/Nabil-Resume.pdf",
+  resume: "/Nabil-Resume.pdf?v=2026-10-27",
 };
 
 export const blogPosts = [
   {
-    title: "AssetForge: turning asset iteration into a front-end workflow",
+    title: "AssetForge: reviewing asset folders before import",
     source: "LinkedIn build post",
     date: "May 2026",
     summary:
-      "Build notes on turning AssetForge into a TypeScript front-end for generating, previewing, and iterating on game and web assets.",
+      "Build notes on a React/TypeScript browser tool for asset-folder validation, duplicate-name review, Godot-compatible paths, and manifest export.",
     details: [
-      "Focused on front-end product feel: fast feedback, clean controls, and a visual workspace that feels useful instead of decorative.",
-      "Built as a public TypeScript project with the same kind of interaction polish I want in my portfolio work.",
+      "Implemented file and folder import, validation rules, reviewed warnings, and JSON manifest and import-note export.",
+      "Added Vitest domain tests and a React Testing Library UI test; published the beta on GitHub Pages.",
     ],
     architecture: [
-      { label: "Prompt/input", detail: "User controls define the asset direction and constraints" },
-      { label: "Workspace", detail: "The front end keeps generation, preview, and selection in one flow" },
-      { label: "Preview loop", detail: "Fast visual comparison makes iteration feel like a design tool" },
-      { label: "Export", detail: "Chosen assets move toward reuse in game or web projects" },
+      { label: "Import", detail: "Files and folders provide metadata and browser-preserved relative paths" },
+      { label: "Validate", detail: "Rules flag naming issues, duplicate base names, and unsupported formats" },
+      { label: "Review", detail: "Categories, tags, and reviewed warnings keep import decisions visible" },
+      { label: "Export", detail: "JSON manifest and import notes describe Godot-compatible resource paths" },
     ],
     links: [
       { label: "GitHub repo", href: "https://github.com/nabil931260/assetforge" },
@@ -464,8 +537,8 @@ export const blogPosts = [
 ];
 
 export const publicHighlights = [
-  { value: "6", label: "selected projects across web, AI, data, and automation" },
-  { value: "2", label: "Amazon Area Manager internship rotations" },
-  { value: "85%", label: "controlled-test accuracy for ExpressifAI" },
-  { value: "10", label: "tests passing for private beta project" },
+  { value: projects.length.toString(), label: "projects spanning web tools, AI, data, and automation" },
+  { value: "2", label: "Amazon Area Manager internships, summers 2023 and 2024" },
+  { value: "React / TS", label: "asset-validation tooling with domain and UI tests" },
+  { value: "AI quality", label: "software engineering evaluation at Handshake AI" },
 ];
