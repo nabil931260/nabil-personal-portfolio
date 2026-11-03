@@ -30,7 +30,7 @@ const curatedRepos: GitHubRepo[] = [
   {
     name: "KickMap",
     html_url: "https://github.com/nabil931260/KickMap",
-    description: "Svelte/Firebase campus event discovery and map/list workflow concept.",
+    description: "SvelteKit/Firebase campus event creation, filtered search, and authentication.",
     language: "TypeScript",
     fork: false,
   },

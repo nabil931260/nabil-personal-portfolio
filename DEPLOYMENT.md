@@ -48,6 +48,14 @@ After the first deployment:
 - Confirm the resume PDF opens from the Resume drawer.
 - Test `Ctrl+K`, terminal `help`, and project drawer scrolling.
 
+## Content Release Workflow
+
+Use a focused branch and pull request for each release. Run lint/build and relevant content or interaction checks, review the public diff, and push the branch. Verify its Vercel Preview before merging to `main`. After merge, verify the remote merge commit, the corresponding Vercel Production deployment, and the production alias. A pushed branch or passing local build does not establish a production release.
+
+For a resume update, compare the downloaded PDF hash with the reviewed source PDF on Preview and Production. Update the version query in `contact.resume` whenever replacing the PDF. Also check the unversioned `/Nabil-Resume.pdf` route. The current deployment config gives that PDF a one-day browser cache, so the versioned UI links are important for visitors who have already opened an older resume.
+
+Private audit plans, changelogs, screenshots, career-review notes, and validation artifacts must stay outside public staging. Review the exact staged file list before committing.
+
 ## Notes
 
 The static app is served from `dist`. The Spotify endpoint is deployed from the `api` directory as a Vercel Node function, keeping Spotify secrets on the server side.
