@@ -19,7 +19,7 @@ import { copyTextToClipboard, getMailtoHref } from "../utils/contactActions";
 import { useModalFocus } from "../utils/modalFocus";
 import { TechBadge } from "./TechBadge";
 
-const priorityProjectIds = ["lead-scanner", "easyteller", "expressifai", "kickmap"];
+const priorityProjectIds = ["assetforge", "easyteller", "lead-scanner", "expressifai", "kickmap"];
 
 const reviewPath = [
   {
@@ -29,13 +29,13 @@ const reviewPath = [
   },
   {
     label: "Strongest fit",
-    value: "Front-end systems + applied AI",
-    detail: "React/Svelte interfaces paired with Python, OCR, computer vision, automation, and practical product workflows.",
+    value: "Software development + AI quality",
+    detail: "React/TypeScript tools, Python workflows, code review, and test-based evaluation.",
   },
   {
     label: "Work signal",
-    value: "Operations-minded builder",
-    detail: "Two Amazon internship rotations and project work shaped around practical operations problems.",
+    value: "Software + operations",
+    detail: "Handshake AI evaluation work and two Amazon internships, with the drop-zone application project completed in 2023.",
   },
 ];
 
@@ -199,7 +199,7 @@ export function RecruiterMode() {
                 </div>
                 <div className="recruiter-experience-list">
                   {experiences.map((item) => (
-                    <article key={`${item.role}-${item.org}`}>
+                    <article key={`${item.role}-${item.org}-${item.dates}`}>
                       <span>{item.dates}</span>
                       <strong>
                         {item.role} - {item.org}

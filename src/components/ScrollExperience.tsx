@@ -509,7 +509,7 @@ export function ScrollExperience() {
         <p className="hero-label">{profile.education}</p>
         <h1 id="top-title">
           <span className="desktop-title">{profile.headline}</span>
-          <span className="mobile-title">CS student building practical tools.</span>
+          <span className="mobile-title">{profile.mobileHeadline}</span>
         </h1>
         <p>{profile.subtitle}</p>
         <div className="hero-actions">
@@ -529,18 +529,10 @@ export function ScrollExperience() {
         id="about"
       >
         <div className="section-kicker">About</div>
-        <h2 id="about-title">Full-stack engineering, applied AI, and practical product thinking.</h2>
+        <h2 id="about-title">{profile.aboutHeading}</h2>
         <div className="about-grid">
-          <p>
-            I am a Computer Science student at UT Dallas focused on building software that solves practical
-            workflow problems. My experience includes full-stack applications, machine learning projects,
-            computer vision, OCR pipelines, and operational tools.
-          </p>
-          <p>
-            I care about projects that can be explained clearly: what problem existed, what was built, which
-            tools were used, and how the result was tested. That approach shows up in my Amazon internship
-            work, portfolio projects, and current automation prototypes.
-          </p>
+          <p>{profile.aboutIntro}</p>
+          <p>{profile.aboutWork}</p>
         </div>
       </ScrollPanel>
 
@@ -646,7 +638,7 @@ export function ScrollExperience() {
         <h2 id="experience-title">Education and experience.</h2>
         <div className="timeline compact">
           {experiences.map((item) => (
-            <article key={`${item.role}-${item.org}`}>
+            <article key={`${item.role}-${item.org}-${item.dates}`}>
               <div>
                 <BriefcaseBusiness size={20} />
               </div>

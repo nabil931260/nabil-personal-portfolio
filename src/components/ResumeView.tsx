@@ -7,7 +7,7 @@ import { copyTextToClipboard, getMailtoHref } from "../utils/contactActions";
 import { useModalFocus } from "../utils/modalFocus";
 import { TechBadge } from "./TechBadge";
 
-const resumeProjectIds = ["lead-scanner", "easyteller", "expressifai", "kickmap"];
+const resumeProjectIds = ["assetforge", "kickmap", "expressifai", "easyteller", "sugarsense"];
 
 export function ResumeView() {
   const [isOpen, setIsOpen] = useState(false);
@@ -137,7 +137,7 @@ export function ResumeView() {
                     <h3>Experience</h3>
                     <div className="resume-timeline">
                       {experiences.map((item) => (
-                        <article key={`${item.role}-${item.org}`}>
+                        <article key={`${item.role}-${item.org}-${item.dates}`}>
                           <div>
                             <strong>
                               {item.role} - {item.org}
